@@ -1,0 +1,209 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        <!-- <link rel="stylesheet" href="css/style.css"> -->
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
+        <link rel="icon" href="image/favicon.png">
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"> -->
+        <title>Table Booking</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f9;
+                background-image: url("image/back.jpeg");
+                color: #333;
+            }
+            .container {
+                max-width: 600px;
+                margin: 50px auto;
+                padding: 20px;
+                background: #fff;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h1 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            form {
+                display: flex;
+                flex-direction: column;
+            }
+            label {
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            input, select, textarea {
+                margin-bottom: 15px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+            button {
+                padding: 10px;
+                font-size: 18px;
+                background-color: #5cb85c;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #4cae4c;
+            }
+
+            #Order_Preview{
+                width: 100%;
+                border-collapse: collapse;
+                margin: 40px 0;
+            }
+
+            .Table_Bold{
+                font-weight: 900;
+            }
+
+            #Order_Preview * td{
+                padding: 10px 5px;
+                text-align: center;
+            }
+
+            .flex_center{
+                display: flex;
+                justify-content: center;
+                flex-grow: 1;
+                align-items: center;
+                gap: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Book Your Table</h1>
+            <form>
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="time">Time (08:00 AM to 11:00 PM)::</label>
+                <input type="time" id="time" name="time" min="08:00" max="23:00" required>
+
+                <!-- <label for="guests">Number of Guests:</label>
+                <select id="guests" name="guests" required>
+                    <option value="">Select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10+</option>
+                </select> -->
+
+                <label for="guests">Number of Guests:</label>
+                <input type="number" name="totalCustomer" id="totNum">
+                
+                <label for="roomType">Room:</label>
+                <select id="roomType" name="roomType" disabled>
+                    <option value="">Select</option>
+                    <option value="AC">AC</option>
+                    <option value="NON-AC">NON-AC</option>
+                </select>
+
+                <label for="guests">Table Number:</label>
+                <div class="flex_center">
+                    <input type="text" name="tableNumber" id="tableNumber" disabled>
+                    <button onclick="handleRoomReselect()" type="button" onclick="getTables()">Reselect Room</button>
+                </div>
+
+                <label for="requests">Special Requests:</label>
+                <textarea id="requests" name="requests" rows="4" placeholder="Enter any special requests"></textarea>
+
+                <label for="guests">Total Amount:</label>
+                <input type="text" name="totalAmount" id="totalAmount" disabled>
+
+                <!-- Items Preview -->
+                <table id="Order_Preview" border="1">
+                    <thead class="Table_Bold">
+                        <td>Item</td>
+                        <td>Quantity</td>
+                        <td>Rate</td>
+                        <td>Price</td>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <div class="payment method">
+                    <label for="payment">Select Payment Method:</label>
+                    <br><br>
+                    <div class="payment_options last"style="color: #ffffff;">
+                        <input type="radio" required name="paymentradio" class="paymentradio" id="delivery" onchange="radio_checked(this)"> 
+                        <label for="delivery" class="payment_option_field" style="color:black;">Cash</label>
+                        <div id="delivery_details" style="display: none;"></div>
+                    </div>
+                    <div id="payment">
+                        <div class="payment_options" style="color: #000000;">
+                            <input type="radio" required name="paymentradio" class="paymentradio" id="upi" value="upi" onchange="radio_checked(this)"> 
+                            <label for="upi" class="payment_option_field">Online Scanner</label><br>
+                            <div id="payment_upi_details" style="display: none;"></div>
+                        </div>
+
+                        <br>
+                        <img src="image/image.png" style="height: 165px;" alt="">
+                        <br>
+
+                    
+                    </div>
+                </div>
+                    
+                <div class="text delivery">
+                    <h4>Delivery time</h4>
+                    <h5>Deliver Now</h5>
+                    <p style="color: greenyellow;">Your order will be delivered in 15 minutes</p>
+                    <!-- <a href="" id="schedule_order">Schedule for later</a> -->
+                </div>
+
+                <span class="text helpline">
+                    <h3>Need help?</h3>
+                    <h4>Contact-12345 12345</h4>
+                </span>
+                <center>
+                    <!-- <a href="2.html"><button onclick="storeAmount()" class="btn back_to_submit">Confirm Order</button></a> -->
+                    <a href="index.html"><button type="button" class="btn back_to_menu">Back to Menu</button></a>
+                    <!-- <a href="index.html"><button type="submit">Order Now</button></a> -->
+                    <!-- <a href="confirmOrder.html" style="color: white;" >  <button style=" width: 23%; height: 43px;" type="submit">Order</button>  </a> -->
+                    <!-- <a href="confirmOrder.html" style="text-decoration: none;"> -->
+                       <a href="confirmOrder.html"> <button  onclick="storeAmount()" style="width: 23%; height: 43px;" type="button">Order</button></a>
+                    <!-- </a> -->
+                </center>
+                    <script>
+                    //                 function storeAmount() {
+                    //     // Perform any required logic here
+                    //     // Navigate to pizza.html explicitly, if needed
+                    //     window.location.href = "pizza.html";
+                    // }
+                </script>
+            </form>
+        </div>
+
+        <script async defer src="order.js"></script>
+    </body>
+
+    </html>

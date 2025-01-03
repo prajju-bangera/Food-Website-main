@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" href="image/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+</head>
+<header class="header">
+
+    <a href="#" id="logo" class="logo"> <i class="fas fa-utensils"></i> DISHDASH </a>
+
+    <nav class="navbar">
+        <a href="index.html">home</a>
+        <a href="#about">about</a>
+        <a href="#popular">popular</a>
+        <a href="#category">menu</a>
+        <a href="#order">order</a>
+        
+    </nav>
+    <div class="icons">
+        <a href="login.html"><button class="open-button" onclick="openForm()"><i class="fa-solid fa-user"></i></button></a>
+
+        <div class="shopping">
+            <img src="image/shopping.svg">
+            <span class="quantity">0</span>
+        </div>
+    </div>
+   
+    <!-- <style>
+        .open-button{
+            margin-top: -40px;
+            margin-right: 100px;
+    margin-bottom: 775px
+        }
+    </style> -->
+
+
+    
+    <script>
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+    
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+    </script>
+
+</header>
+<section class="category" id="category">
+
+
+    <a href="Dosa.html" class="box">
+       <img src="image/dosaa.jpeg" alt="">
+       <h3>Dosa</h3>
+    </a>
+ 
+    <a href="rice.html" class="box">
+        <img src="image/cat-5.png" alt="">
+        <h3>Rice Item</h3>
+    </a>
+ 
+     <a href="pizza.html" class="box">
+         <img src="image/cat-2.png" alt="">
+         <h3>pizza</h3>
+     </a>
+ 
+     <a href="chicken.html" class="box">
+         <img src="image/cat-4.png" alt="">
+         <h3>Chicken Starters</h3>
+     </a>
+ 
+     <a href="juice.html" class="box">
+         <img src="image/juice.jpg" alt="">
+         <h3>Juice & Milkshake</h3>
+     </a>
+ 
+     <a href="combo.html" class="box">
+         <img src="image/cat-1.png" alt="">
+         <h3>combo</h3>
+     </a>
+ 
+ </section>
+<!-- <body class=""> -->
+    
+    <div class="container">
+        <header>
+        <h1 style="font-size: 35px;">Your Chicken Starters</h1>
+            <div class="shopping">
+                <img src="image/shopping.svg">
+                <span class="quantity">0</span>
+            </div>
+        </header>
+
+        <div class="list">
+          
+        </div>
+    </div>
+    <div class="card">
+        <h1>Card</h1>
+        <div class="total"> ₹0</div>
+        <ul class="listCard">
+
+        </ul>
+
+  <style>
+    .block {
+      display: block;
+      width: 50%;
+      border: none;
+      background-color: #1C1F25;
+      color: white;
+      padding: 14px 28px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+    }
+  </style>
+
+        <div class="checkOut" style="font-size: 15px;">
+            
+            <div class="closeShopping">Close</div>
+            <div>
+                <a href="table.html">
+                    <button class="block"><b>Order</b></button>
+                  </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="chicken.js"></script>
+
+    <section class="order" id="order">
+
+        <div class="heading">
+            <span>order and Book the Table now</span>
+            <h3></h3>
+        </div>
+    
+        <div class="icons-container">
+    
+            <div class="icons">
+                <img src="image/icon-1.png" alt="">
+                <h3>8:00am to 11:00pm</h3>
+            </div>
+    
+            <div class="icons">
+                <img src="image/icon-2.png" alt="">
+                <h3>+123-456-7890</h3>
+            </div>
+    
+            <div class="icons">
+                <img src="image/icon-3.png" alt="">
+                <h3>Puttur, Karnataka - 400054</h3>
+            </div>
+       
+            
+    
+        </div>
+    
+       
+    <!-- footer section starts  -->
+    
+    <section class="footer">
+    
+        <div class="box-container">
+    
+            <div class="box">
+                <h3>menu</h3>
+                <a href="pizza.html"><i class="fas fa-arrow-circle-right"></i> pizza</a>
+                <a href="dosa.html"><i class="fas fa-arrow-circle-right"></i> Dosa</a>
+                <a href="rice.html"><i class="fas fa-arrow-circle-right"></i> Rice</a>
+                <a href="chicken.html"><i class="fas fa-arrow-circle-right"></i> Chicken Starters</a>
+                <a href="juice.html"><i class="fas fa-arrow-circle-right"></i> Juice</a>
+                <a href="combo.html"><i class="fas fa-arrow-circle-right"></i> Combo </a>
+                
+            </div>
+    
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#home"> <i class="fas fa-arrow-circle-right"></i> home</a>
+                <a href="#about"> <i class="fas fa-arrow-circle-right"></i> about</a>
+                <a href="#popular"> <i class="fas fa-arrow-circle-right"></i> popular</a>
+                <a href="#menu"> <i class="fas fa-arrow-circle-right"></i> menu</a>
+                <a href="#order"> <i class="fas fa-arrow-circle-right"></i> order</a>
+                <a href="#blogs"> <i class="fas fa-arrow-circle-right"></i> blogs</a>
+            </div>
+    
+      
+    
+            <div class="box">
+                <h3>opening hours</h3>
+                <p><span style="font-weight: bold;">Monday</span> : 8:00am to 11:00pm</p>
+                <p><span style="font-weight: bold;">Tuesday</span>  : 8:00am to 11:00pm</p>
+                <p><span style="font-weight: bold;">Wednesday</span>  : 8:00am to 11:00pm</p>
+                <p><span style="font-weight: bold;">Thursday</span>  : 8:00am to 11:00pm</p>
+                <p><span style="font-weight: bold;">Friday</span>  : 8:00am to 11:00pm</p>
+                <p><span style="font-weight: bold;">saturday and sunday closed</span> </p>
+            </div>
+    
+        </div>
+    
+        <div class="bottom">
+    
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+                <a href="#" class="fab fa-pinterest"></a>
+            </div>
+    
+            <!-- <div class="credit"> &copy;2022<span> Foddies</span>  all rights reserved </div> -->
+    
+        </div>
+    
+    </section>
+</body>
+
+<style>
+
+body{
+    background-color: #E3E7E8;
+    font-family: system-ui;
+    
+}
+.container{
+    width: 1000px;
+    margin: auto;
+    transition: 0.5s;
+    margin-left: 209px;
+}
+header{
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    margin-top: 50px;
+}
+header .shopping{
+    position: relative;
+    text-align: right;
+    margin-left: 400px;
+}
+header .shopping img{
+    width: 40px;
+}
+header .shopping span{
+    background: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    position: absolute;
+    top: -5px;
+    left: 80%;
+    padding: 3px 10px;
+}
+.list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+    margin-top: 50px;
+}
+.list .item img:hover{
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+    .list .item button:hover{
+    background-color: rgb(20, 102, 21); 
+    }
+    .list .item{
+    text-align: center;
+    background-color: #DCE0E1;
+    padding: 20px;
+    box-shadow: 0 50px 50px #757676;
+    letter-spacing: 1px;
+    border-style: inset;
+    border-color: black;
+}
+.list .item img{
+    /* width: 90%; */
+    height: 250px;
+    object-fit: cover;
+}
+.list .item .title{
+    font-weight: 600;
+    font-size: 25px;
+}
+.list .item .price{
+    margin: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.list .item button{
+    background-color: #1C1F25;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+}
+.card{
+    position: fixed;
+    top:0;
+    left: 100%;
+    width: 500px;
+    background-color: #453E3B;
+    height: 100vh;
+    transition: 0.5s;
+    z-index: 999;
+    font-size: 15px;
+}
+.active .card{
+    left: calc(100% - 500px);
+}
+.active .container{
+   transform: translateX(-200px);
+}
+.card h1{
+    color: #E8BC0E;
+    font-weight: 100;
+    margin: 0;
+    padding: 0 20px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    /* font-size: 15px; */
+}
+.card .checkOut{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+}
+.card .checkOut div{
+    background-color: gold;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+.total{
+    background-color:gold;
+    width: 40%;
+    height: 50px;
+    display: flex;
+    margin-left: 165px;
+  
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+.card .checkOut div:nth-child(2){
+    background-color: #1C1F25;
+    color: #fff;
+}
+.listCard li{
+    display: grid;
+    grid-template-columns: 100px repeat(3, 1fr);
+    color: #fff;
+    row-gap: 10px;
+}
+.listCard li div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.listCard li img{
+    width: 90%;
+}
+.listCard li button{
+    background-color: #fff5;
+    border: none;
+}
+.listCard .count{
+    margin: 0 10px;
+}
+
+.category {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(16rem, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.5rem;
+  padding-bottom: 5rem;
+}
+
+.category .box {
+  padding: 2rem;
+  text-align: center;
+  border-radius: .5rem;
+  background: #f7f7f7;
+  border-style: inset;
+  caret-color: #000;
+  height: 193px;
+}
+
+.category .box:hover {
+  background: #27ae60;
+}
+
+.category .box:hover h3 {
+  color: #fff;
+}
+
+.category .box img {
+  height: 7rem;
+}
+
+.category .box h3 {
+  font-size: 1.8rem;
+  color: #130f40;
+}
+</style>
+
+
+
+
+
+
+
+
+
+</html>

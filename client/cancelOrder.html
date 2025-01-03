@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, button {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Cancel Your Order</h1>
+        <form id="cancelForm">
+            <label for="email">Order Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="reason">Reason for Cancellation:</label>
+            <textarea id="reason" name="reason" rows="4" placeholder="Enter your reason for cancellation" required></textarea>
+
+            <button type="submit">Cancel Order</button>
+        </form>
+    </div>
+
+    <script>
+        const SERVER_URL = "http://localhost:5000";
+
+        document.getElementById('cancelForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const reason = document.getElementById('reason').value;
+
+            if (!email || !reason) {
+                alert("Please fill in all fields!");
+                return;
+            }
+
+            const payload = { email, reason };
+
+            try {
+                const res = await fetch(`${SERVER_URL}/auth/cancelOrder`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(payload),
+                });
+
+                if (res.status === 200) {
+                    alert("Your order has been canceled successfully!");
+                    window.location.href = "index.html"; // Redirect to home page
+                } else {
+                    alert("Failed to cancel the order. Please try again.");
+                }
+            } catch (err) {
+                console.error("Error during order cancellation:", err);
+                alert("An error occurred while canceling the order. Please check your network and try again.");
+            }
+        });
+    </script>
+
+</body>
+</html>

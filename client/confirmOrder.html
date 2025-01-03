@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Order</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .order-summary, .order-details {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .total-label {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .total-price {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .order-details p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .button-group {
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            background-color: #28a745;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* Dropdown styles */
+        #cancel-reason-container {
+            display: none;
+            margin-top: 10px;
+        }
+
+        #cancel-reason {
+            width: 100%;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 10px;
+            width: 50%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .close {
+            cursor: pointer;
+            color: #000;
+            font-size: 18px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        #cancel-message {
+            display: none;
+            color: red;
+            text-align: center;
+        }
+
+        .close-icon {
+    position: absolute;
+    top: 50%; 
+    right: 10px; 
+    transform: translateY(-50%); /* Center vertically */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px; /* Adjust size if necessary */
+    color: #f60000; /* Optional: Customize color */
+}
+.close{
+    margin-top: 2px;
+    margin-right: 10px;
+    font-size: 30px;
+    color: red;
+}
+
+
+#cancel-reason-container {
+    display: none; /* Initially hidden */
+    position: fixed; /* Fixed positioning */
+    top: 0; left: 0;
+    width: 100%; height: 100%; /* Full screen width and height */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent overlay */
+    z-index: 1000; /* Above all other content */
+    padding: 20px;
+}
+
+.modal-content {
+    background: #fff; /* White background */
+    border-radius: 10px;
+    width: 50%; /* Adjust as necessary */
+    max-width: 600px;
+    margin: 50px auto; /* Center modal */
+    padding: 20px;
+    position: relative;
+    text-align: center;
+}
+
+
+
+h2 {
+    color: #007bff; /* Blue heading */
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: #28a745; /* Green submit button */
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Confirm Your Order</h1>
+        
+        <!-- Order Summary Section -->
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <table id="Order_Preview" border="1">
+                <thead>
+                    <tr>
+                        <td>Item</td>
+                        <td>Quantity</td>
+                        <td>Rate</td>
+                        <td>Price</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <script src="order.js"></script>
+            </table>
+        </div>
+
+        <!-- Shipping Details Section -->
+        <div class="order-details">
+            <!-- <h2>Shipping Details</h2> -->
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="button-group">
+            <button id="cancel-button" onclick="showCancelPopup()">Cancel Order</button>
+            <div class="button-group">
+                <button id="download-receipt" onclick="downloadReceipt()">Download Receipt</button>
+            </div>
+            
+               
+<button onclick="showModal()">Confirm Order</button>
+        </div>
+
+        <!-- Cancel Reason Dropdown Popup -->
+        <div id="cancel-reason-container" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeCancelPopup()">&times;</span>
+                <h2>Reason for Canceling:</h2>
+                <select id="cancel-reason">
+                    <option value="1">Item out of stock</option>
+                    <option value="2">Changed my mind</option>
+                    <option value="3">Incorrect order details</option>
+                    <option value="4">Other</option>
+                </select>
+                <button onclick="submitCancelReason()" style="margin-top: 10px;">Cancel Order</button>
+            </div>
+        </div>
+
+        <div id="cancel-message" class="error-message">
+            <p id="cancel-error-message"></p>
+        </div>
+
+        <!-- Modal for Thank You Message -->
+        <div id="thank-you-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Thank You!</h2>
+                <p>Your order has been saved.</p>
+                <button onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+
+
+
+function showCancelPopup() {
+    document.getElementById('cancel-reason-container').style.display = 'block';
+}
+
+function closeCancelPopup() {
+    document.getElementById('cancel-reason-container').style.display = 'none';
+}
+        function showCancelPopup() {
+            document.getElementById('cancel-reason-container').style.display = 'block';
+        }
+
+        function closeCancelPopup() {
+            document.getElementById('cancel-reason-container').style.display = 'none';
+        }
+
+        // function submitCancelReason() {
+        //     const reason = document.getElementById('cancel-reason').value;
+
+        //     fetch('/cancelOrder', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({
+        //             email: 'user@example.com', // Replace with appropriate user identification
+        //             reason: reason
+        //         })
+        //     })
+        //     .then(response => {
+        //         if (response.ok) {
+        //             return response.json(); // Assuming the server sends a response in JSON format
+        //         } else {
+        //             throw new Error('Failed to cancel the order.');
+        //         }
+        //     })
+        //     .then(data => {
+        //         // Handle success (show a message or redirect)
+        //         alert(data.message); // Show a response message from the server
+        //         document.getElementById('thank-you-modal').style.display = 'block'; // Show modal
+        //     })
+        //     .catch(error => {
+        //         // Handle errors
+        //         document.getElementById('cancel-message').style.display = 'block';
+        //         document.getElementById('cancel-error-message').innerText = error.message || 'Failed to cancel the order.';
+        //     });
+        // }
+
+        function closeModal() {
+            document.getElementById('thank-you-modal').style.display = 'none';
+        }
+        
+function showModal() {
+    document.getElementById('thank-you-modal').style.display = 'block';
+}
+
+function downloadReceipt() {
+    const { jsPDF } = window.jspdf;
+
+    // Create a new jsPDF instance
+    const doc = new jsPDF();
+
+    // Title
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.text("DISHDASH", 105, 20, { align: "center" });
+
+    // Subtitle
+    doc.setFontSize(12);
+    doc.text("Order Summary", 10, 40);
+
+    // Extract table content
+    const table = document.getElementById("Order_Preview");
+    const rows = table.getElementsByTagName("tr");
+
+    const headers = [];
+    const body = [];
+
+    for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName("td");
+        const row = [];
+        for (let j = 0; j < cells.length; j++) {
+            row.push(cells[j].innerText);
+        }
+        if (i === 0) {
+            headers.push(...row); // First row is header
+        } else {
+            body.push(row); // Remaining rows are data
+        }
+    }
+
+    // Add table to the PDF
+    doc.autoTable({
+        startY: 50,
+        head: [headers],
+        body: body,
+        theme: "grid",
+        styles: { fontSize: 10 },
+    });
+
+    // Footer or Additional Notes
+    const finalY = doc.lastAutoTable.finalY || 50;
+    doc.text("Thank you for your order!", 105, finalY + 20, { align: "center" });
+
+    // Save the PDF
+    doc.save("dishdash.pdf");
+}
+
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    
+</body>
+</html>
+
+
+
+
+

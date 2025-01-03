@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your Seat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            background-image: url("image/backgrd.webp");
+            color: #333;
+        }
+        .container {
+            width: 1500px;
+        /* margin-right: 200px; */
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .seat-map {
+            display: grid;
+            grid-template-columns: repeat(5, 50px);
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .seat {
+            width: 50px;
+            height: 50px;
+            background-color: #ddd;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 45%;
+            border-style:solid;
+            border-width: 1px;
+        }
+
+        .seat:hover{
+            background-color:  #5cb85c;
+            color: white;
+        }
+        .seat.selected {
+            background-color: #5cb85c;
+            color: #fff;
+        }
+        button {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #5cb85c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            height: 60px;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const seats = document.querySelectorAll('.seat');
+
+            seats.forEach(seat => {
+                seat.addEventListener('click', () => {
+                    seat.classList.toggle('selected');
+                });
+            });
+
+            const confirmButton = document.getElementById('confirm-seats');
+            confirmButton.addEventListener('click', () => {
+                const selectedSeats = [];
+                document.querySelectorAll('.seat.selected').forEach(seat => {
+                    selectedSeats.push(seat.textContent);
+                });
+
+                const foodSeats = {
+                    selectedSeats,
+                    roomType: selectedSeats[0].startsWith('T') ? 'NON-AC' : 'AC'
+                    // roomType: selectedSeats[0].startsWith('T') ? 'NON-AC' : 'AC'
+                }
+
+                localStorage.setItem('food_seats', JSON.stringify(foodSeats));
+                alert(`You have selected seats: ${selectedSeats.join(', ')}`);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Your Seats</h1><br><br>
+        <h1>------------------------------------------------------------------NON-AC--------------------------------------------------------------</h1><br>
+        <section style="margin-right: 300px;">
+
+        <h1 style="margin-left: -200px;">Table 4</h1>
+        <div class="seat-map">
+            <div class="seat">T19</div>
+            <div class="seat">T20</div>
+           <div class="seat">T21</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">T22</div>
+            <div class="seat">T23</div>
+           <div class="seat">T24</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+
+<br><br>
+<h1 style="margin-left: -200px;">Table 5</h1>
+        <div class="seat-map">
+            <div class="seat">T25</div>
+            <div class="seat">T26</div>
+           <div class="seat">T27</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">T28</div>
+            <div class="seat">T29</div>
+           <div class="seat">T30</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <br><br>
+
+        <h1 style="margin-left: -200px;">Table 6</h1>
+        <div class="seat-map">
+            <div class="seat">T31</div>
+            <div class="seat">T32</div>
+           <div class="seat">T33</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">T34</div>
+            <div class="seat">T35</div>
+           <div class="seat">T36</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+
+    </section>
+
+
+
+
+
+    <section style="margin-left: 295px; margin-top: -689px;">
+
+        <h1 style="margin-left: -200px;">Table 7</h1>
+        <div class="seat-map">
+            <div class="seat">F1</div>
+            <div class="seat">F2</div>
+           <div class="seat">F3</div>
+           <div class="seat">F4</div>
+           <div class="seat">F5</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">F6</div>
+            <div class="seat">F7</div>
+           <div class="seat">F8</div>
+           <div class="seat">F9</div>
+           <div class="seat">F10</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+
+<br><br>
+<h1 style="margin-left: -200px;">Table 8</h1>
+        <div class="seat-map">
+            <div class="seat">F11</div>
+            <div class="seat">F12</div>
+           <div class="seat">F13</div>
+           <div class="seat">F14</div>
+           <div class="seat">F15</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">F16</div>
+            <div class="seat">F17</div>
+           <div class="seat">F18</div>
+           <div class="seat">F19</div>
+           <div class="seat">F20</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <br><br>
+
+        <h1 style="margin-left: -200px;">Table 9</h1>
+        <div class="seat-map">
+            <div class="seat">F21</div>
+            <div class="seat">F22</div>
+           <div class="seat">F23</div>
+           <div class="seat">F24</div>
+           <div class="seat">F25</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">F26</div>
+            <div class="seat">F27</div>
+           <div class="seat">F28</div>
+           <div class="seat">F29</div>
+           <div class="seat">F30</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+
+    </section>
+
+
+    <section style="margin-right: 900px; margin-top: -683px;">
+
+        <h1 style="margin-left: -200px;">Table 1</h1>
+        <div class="seat-map">
+            <div class="seat">T1</div>
+            <div class="seat">T2</div>
+           <div class="seat">T3</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">T4</div>
+            <div class="seat">T5</div>
+           <div class="seat">T6</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        
+
+<br><br>
+<h1 style="margin-left: -200px;">Table 2</h1>
+        <div class="seat-map">
+            <div class="seat">T7</div>
+            <div class="seat">T8</div>
+           <div class="seat">T9</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">T10</div>
+            <div class="seat">T11</div>
+           <div class="seat">T12</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <br><br>
+
+        <h1 style="margin-left: -200px;">Table 3</h1>
+        <div class="seat-map">
+            <div class="seat">T13</div>
+            <div class="seat">T14</div>
+           <div class="seat">T15</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">T16</div>
+            <div class="seat">T17</div>
+           <div class="seat">T18</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        
+
+    </section><br>
+
+
+
+
+    <section style="margin-left: 1109px; margin-top: -729px;">
+
+        <h1 style="margin-left: -200px;">Table 10</h1>
+        <div class="seat-map">
+            <div class="seat">F31</div>
+            <div class="seat">F32</div>
+           <div class="seat">F33</div>
+           <div class="seat">F34</div>
+           <div class="seat">F35</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">F36</div>
+            <div class="seat">F37</div>
+           <div class="seat">F38</div>
+           <div class="seat">F39</div>
+           <div class="seat">F40</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+
+<br><br>
+<h1 style="margin-left: -200px;">Table 11</h1>
+        <div class="seat-map">
+            <div class="seat">F41</div>
+            <div class="seat">F42</div>
+           <div class="seat">F43</div>
+           <div class="seat">F44</div>
+           <div class="seat">F45</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">F46</div>
+            <div class="seat">F47</div>
+           <div class="seat">F48</div>
+           <div class="seat">F49</div>
+           <div class="seat">F50</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <br><br>
+
+        <h1 style="margin-left: -200px;">Table 12</h1>
+        <div class="seat-map">
+            <div class="seat">F51</div>
+            <div class="seat">F52</div>
+           <div class="seat">F53</div>
+           <div class="seat">F54</div>
+           <div class="seat">F55</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">F56</div>
+            <div class="seat">F57</div>
+           <div class="seat">F58</div>
+           <div class="seat">F59</div>
+           <div class="seat">F60</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+
+    </section>
+    <h1>----------------------------------------------------------------------------------------------------------------------------------------</h1><br><br>
+    <span class="arrow">ENTRY&#8658;</span><br><br><br>
+    <h1>----------------------------------------------------------------------AC--------------------------------------------------------------</h1>
+<style>
+.arrow {
+    font-size: 55px; /* Medium size */
+    color: red; /* Initial color */
+    display: inline-block; /* Ensures the span remains inline */
+    animation: colorShift 2s infinite alternate; /* Animation for color shift */
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+@keyframes colorShift {
+    0% {
+        color: red; /* Start color */
+    }
+    50% {
+        color: orange; /* Middle color */
+    }
+    100% {
+        color: yellow; /* End color */
+    }
+}
+
+.arrow:hover {
+    color: green; /* Final color on hover */
+}
+
+
+</style>
+
+
+    <!-- <br><br><br><br><br><br><br><br> -->
+
+    <section style="margin-left: -900px;"> 
+        <h1 style="margin-left: -200px;">Table 13</h1>
+        <div class="seat-map">
+            <div class="seat">A1</div>
+            <div class="seat">A2</div>
+           <div class="seat">A3</div>
+           <div class="seat">A4</div>
+           <div class="seat">A5</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">A6</div>
+            <div class="seat">A7</div>
+           <div class="seat">A8</div>
+           <div class="seat">A9</div>
+           <div class="seat">A10</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <br><br>
+
+        <h1 style="margin-left: -200px;">Table 14</h1>
+        <div class="seat-map">
+            <div class="seat">A11</div>
+            <div class="seat">A12</div>
+           <div class="seat">A13</div>
+           <div class="seat">A14</div>
+           <div class="seat">A15</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">A16</div>
+            <div class="seat">A17</div>
+           <div class="seat">A18</div>
+           <div class="seat">A19</div>
+           <div class="seat">A20</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+    </section>
+
+
+
+    <section style="margin-right: -50px; margin-top: -438px;"> 
+        <h1 style="margin-left: -200px;">Table 15</h1>
+        <div class="seat-map">
+            <div class="seat">A21</div>
+            <div class="seat">A22</div>
+           <div class="seat">A23</div>
+           <div class="seat">A24</div>
+           <div class="seat">A25</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">A26</div>
+            <div class="seat">A27</div>
+           <div class="seat">A28</div>
+           <div class="seat">A29</div>
+           <div class="seat">A30</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <br><br>
+
+        <h1 style="margin-left: -200px;">Table 16</h1>
+        <div class="seat-map">
+            <div class="seat">A31</div>
+            <div class="seat">A32</div>
+           <div class="seat">A33</div>
+           <div class="seat">A34</div>
+           <div class="seat">A35</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">A36</div>
+            <div class="seat">A37</div>
+           <div class="seat">A38</div>
+           <div class="seat">A39</div>
+           <div class="seat">A40</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+    </section>
+
+
+
+
+    <section style="margin-right: -950px; margin-top: -438px;"> 
+        <h1 style="margin-left: -200px;">Table 17</h1>
+        <div class="seat-map">
+            <div class="seat">A41</div>
+            <div class="seat">A42</div>
+           <div class="seat">A43</div>
+           <div class="seat">A44</div>
+           <div class="seat">A45</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">A46</div>
+            <div class="seat">A47</div>
+           <div class="seat">A48</div>
+           <div class="seat">A49</div>
+           <div class="seat">A50</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <br><br>
+
+        <h1 style="margin-left: -200px;">Table 18</h1>
+        <div class="seat-map">
+            <div class="seat">A51</div>
+            <div class="seat">A52</div>
+           <div class="seat">A53</div>
+           <div class="seat">A54</div>
+           <div class="seat">A55</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+        <div class="seat-map">
+            <div class="seat">A56</div>
+            <div class="seat">A57</div>
+           <div class="seat">A58</div>
+           <div class="seat">A59</div>
+           <div class="seat">A60</div>
+            <!-- <div class="seat">4</div> -->
+        </div>
+    </section>
+    <h1>----------------------------------------------------------------------------------------------------------------------------------------</<br><br>
+
+        <a href="order.html"><button id="confirm-seats">Book Your Table</button></a>
+    </div>
+</body>
+</html>

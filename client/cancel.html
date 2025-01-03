@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cancel Order</h1>
+        <form id="cancelOrderForm">
+            <label for="orderNumber">Order Number:</label>
+            <input type="text" id="orderNumber" name="orderNumber" required>
+
+            <label for="cancelReason">Reason for Cancellation:</label>
+            <select id="cancelReason" name="cancelReason" required>
+                <option value="">Select a reason</option>
+                <option value="changed_mind">Changed my mind</option>
+                <option value="ordered_wrong_item">Ordered the wrong item</option>
+                <option value="found_cheaper">Found a cheaper option</option>
+                <option value="other">Other</option>
+            </select>
+
+            <button type="submit">Submit Cancellation</button>
+
+            <p id="errorMessage" class="error" style="display:none;">Please fill out all fields.</p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('cancelOrderForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting the usual way
+            const orderNumber = document.getElementById('orderNumber').value;
+            const cancelReason = document.getElementById('cancelReason').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (orderNumber === '' || cancelReason === '') {
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+                // Here you would handle form submission via AJAX or redirect
+                alert('Order Cancellation Submitted');
+            }
+        });
+    </script>
+</body>
+</html>
