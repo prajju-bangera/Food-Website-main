@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Page</title>
+ <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 28px;
+  color: #333;
+}
+
+header p {
+  color: #777;
+  font-size: 16px;
+}
+
+.feedback-form label {
+  display: block;
+  font-size: 16px;
+  color: #555;
+  margin: 10px 0 5px;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.feedback-form button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.feedback-form button:hover {
+  background-color: #45a049;
+}
+
+/* Star Rating Styles */
+.star-rating {
+  display: flex;
+  /* justify-content: space-between; */
+  margin-bottom: 20px;
+  /* font-size: 0; */
+  font-size: 30px;
+  gap: 30px;
+  margin-left: 137px;
+  
+  /* direction: rtl; Flip stars to make them align from left to right */
+}
+
+.star {
+  font-size: 590px;
+  color: #ddd;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.star-rating input[type="radio"] {
+  display: none;
+}
+
+.star-rating input[type="radio"]:checked ~ .star {
+  color: #f39c12;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #f39c12;
+}
+
+.star-rating label:active {
+  color: #e67e22;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  header h1 {
+    font-size: 24px;
+  }
+
+  .feedback-form input,
+  .feedback-form textarea {
+    font-size: 14px;
+  }
+
+  .feedback-form button {
+    font-size: 14px;
+  }
+
+  .star-rating .star {
+    font-size: 28px;
+  }
+}
+
+ </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>We Value Your Feedback</h1>
+      <p>Please share your thoughts and suggestions.</p>
+    </header>
+
+    <form class="feedback-form">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+      <!-- <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required> -->
+
+      <label for="message">Your Feedback</label>
+      <textarea id="message" name="message" placeholder="Write your feedback here..." rows="5" required></textarea>
+
+      <label for="rating">Rating</label>
+      <div class="star-rating" id="rating">
+        <input type="radio" id="star5" name="rating" value="5"><label for="star5" class="star" style="font-size: 40px;">&#9733;</label>
+        <input type="radio" id="star4" name="rating" value="4"><label for="star4" class="star" style="font-size: 40px;">&#9733;</label>
+        <input type="radio" id="star3" name="rating" value="3"><label for="star3" class="star" style="font-size: 40px;">&#9733;</label>
+        <input type="radio" id="star2" name="rating" value="2"><label for="star2" class="star" style="font-size: 40px;">&#9733;</label>
+        <input type="radio" id="star1" name="rating" value="1"><label for="star1" class="star"style="font-size: 40px;">&#9733;</label>
+      </div>
+
+      <button type="submit" onclick="submitFeedback()">Submit Feedback</button>
+    </form>
+  </div>
+</body>
+<script src="feedback.js"></script>
+</html>

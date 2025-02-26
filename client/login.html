@@ -284,7 +284,7 @@
 
 <body>
     <header>
-        <h1 class="heading">Welcome to Benaka Grocery </h1>
+        <h1 class="heading">Welcome to DISHDASH </h1>
         <!-- <h3 class="title">Sliding Login & Registration Form</h3> -->
          
     </header>
@@ -347,6 +347,8 @@
                     <input type="text" 
                         class="name ele" 
                         id="reg-username"
+                        pattern="[A-Za-z\s]+"
+                        title="Only letters and spaces are allowed."
                         placeholder="Enter your name">
                     <input type="email" 
                         class="email ele" 
@@ -384,6 +386,21 @@
             slider.classList.remove("moveslider");
             formSection.classList.remove("form-section-move");
         });
+
+        // function handleLogin() {
+        //         const email = document.getElementById("log-email").value;
+        //         const password = document.getElementById("log-password").value;
+
+        //     // Perform validation or authentication here
+        //     if (email && password) {
+        //         // Example: Redirect to index.html after successful login
+        //         localStorage.setItem('isLoggedIn', 'true'); // Save login status
+        //         window.location.href = 'index.html'; // Redirect to index.html
+        //     } else {
+        //         alert("Please enter valid credentials.");
+        //     }
+        // }
+
     </script>
 <style>#toggle-password {
     font-size: 1.2em;

@@ -16,9 +16,27 @@
             align-items: center;
             height: 100vh;
         }
+        .rowdataitem{
+            margin-left: 450px;
+            margin-top: -167px;
+            font-size: 18px;
+     
+        }
+        strong{
+           color:  #007bff;
+        }
+        .container1 {
+            /* max-width: 800px; */
+            width: 823px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
         .container {
-            max-width: 800px;
+            /* max-width: 800px; */
+            width: 785px;
             background: #fff;
             padding: 20px;
             border-radius: 10px;
@@ -33,6 +51,7 @@
 
         .order-summary, .order-details {
             margin-bottom: 20px;
+            font-size: 18px;
         }
 
         h2 {
@@ -43,18 +62,25 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 10px;
+            margin: 20px 0;
+            background: #f9f9f9;
         }
-
+    
         table th, table td {
-            border: 1px solid #ddd;
-            padding: 8px;
+            padding: 12px 15px;
             text-align: center;
+            border: 1px solid #eaeaea;
+            font-size: 14px;
         }
-
+    
         table th {
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #007bff;
+            color: #ffffff;
+            font-weight: bold;
+        }
+    
+        table tr:nth-child(even) {
+            background-color: #f3f8ff;
         }
 
         .total-label {
@@ -211,12 +237,46 @@ button:hover {
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Confirm Your Order</h1>
+   
+    <div class="container1">
+        <h1>Thanky  You for Your Order!!!</h1>
         
         <!-- Order Summary Section -->
         <div class="order-summary">
+            
+            <div class="container">
+                <h2>Customer Details</h2>
+                <!-- <h1>Booking Details</h1>
+                <h1>Customer Details</h1> -->
+                <div id="bookingDataContainer"></div>
+            
+        
+            <script>
+                // Retrieve data from local storage
+                const bookingData = JSON.parse(localStorage.getItem('order_user_data'));
+        
+                if (bookingData) {
+                    const container = document.getElementById('bookingDataContainer');
+                    container.innerHTML = `
+                        <div class="data-item"><strong>Full Name:</strong> ${bookingData.name}</div> <br>
+                        <div class="data-item"><strong>Email:</strong> ${bookingData.email}</div><br>
+                        <div class="data-item"><strong>Phone Number:</strong> ${bookingData.phone}</div><br>
+                        <div class="data-item"><strong>Date:</strong> ${bookingData.date}</div><br>
+                          <div class="rowdataitem">
+                        <div class="data-item"><strong>Time:</strong> ${bookingData.time}</div><br>
+                      
+                        <div class="data-item"><strong>Number of Guests:</strong> ${bookingData.totNum}</div><br>
+                        <div class="data-item"><strong>Room Type:</strong> ${bookingData.tableNumber}</div><br>
+                        <div class="data-item"><strong>Payment Type:</strong> ${bookingData.payment}</div><br>
+                   
+                        </div>
+                    `;
+                } else {
+                    // alert("No booking data found!");
+                }
+            </script>
             <h2>Order Summary</h2>
+
             <table id="Order_Preview" border="1">
                 <thead>
                     <tr>
@@ -230,6 +290,7 @@ button:hover {
                 <script src="order.js"></script>
             </table>
         </div>
+        </div>
 
         <!-- Shipping Details Section -->
         <div class="order-details">
@@ -238,7 +299,7 @@ button:hover {
 
         <!-- Buttons Section -->
         <div class="button-group">
-            <button id="cancel-button" onclick="showCancelPopup()">Cancel Order</button>
+            <!-- <button id="cancel-button" onclick="showCancelPopup()">Cancel Order</button> -->
             <div class="button-group">
                 <button id="download-receipt" onclick="downloadReceipt()">Download Receipt</button>
             </div>
@@ -272,7 +333,7 @@ button:hover {
                 <span class="close" onclick="closeModal()">&times;</span>
                 <h2>Thank You!</h2>
                 <p>Your order has been saved.</p>
-                <button onclick="closeModal()">Close</button>
+         <!-- <a href="feedback.html"> <button onclick="closeModal()">Your Feedback</button></a> -->
             </div>
         </div>
     </div>
@@ -389,6 +450,25 @@ function downloadReceipt() {
     doc.save("dishdash.pdf");
 }
 
+
+function storeFormData() {
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        date: document.getElementById('date').value,
+        time: document.getElementById('time').value,
+        totalCustomer: document.getElementById('totNum').value,
+        roomType: document.getElementById('roomType').value,
+        tableNumber: document.getElementById('tableNumber').value,
+        totalAmount: document.getElementById('totalAmount').value,
+        specialRequests: document.getElementById('requests').value,
+    };
+
+    localStorage.setItem('bookingData', JSON.stringify(formData));
+    console.log("Saved data: ", formData); // Debugging
+    alert("Your data has been saved!");
+}
 
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>

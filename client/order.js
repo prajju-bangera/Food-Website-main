@@ -10,12 +10,15 @@ async function storeAmount(){
     var tableNumber = document.getElementById('tableNumber').value;
     var request = document.getElementById('requests').value;
     var totalAmount = document.getElementById('totalAmount').value;
-    var delivery = document.getElementById('delivery').value;
+    var payment = document.getElementById("payment-method").value;
+
+    // var delivery = document.getElementById('delivery').value;
     // var upi = document.getElementById('upi').value;
 
-    var payment = delivery ? "delivery" : "upi"
+    // var payment = delivery ? "delivery" : "upi"
 
     const OrderList = JSON.parse(localStorage.getItem("food_cart_items")) || [];
+    localStorage.setItem("order_user_data",JSON.stringify({ name, email, phone, date, time, totNum, tableNumber, request, totalAmount, payment }))
   
         
     if(!name || !email || !phone || !date || !time || !totNum || !tableNumber || !request || !totalAmount || !payment ||OrderList.length==0){
@@ -152,6 +155,7 @@ const handleSubmit = async (event) => {
 
     console.log({ name, email, phone, date, time, totNum, payment, request });
     const OrderList = JSON.parse(localStorage.getItem("food_cart_items")) || [];
+
 
     // Validate input
     // if (!name || !email || !phone || !date || !time || !totNum || !payment || !request) {

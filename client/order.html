@@ -34,6 +34,7 @@
             form {
                 display: flex;
                 flex-direction: column;
+                
             }
             label {
                 margin-bottom: 5px;
@@ -84,7 +85,7 @@
         </style>
     </head>
     <body>
-        <div class="container">
+        <div class="container" style="margin-left: 258px;">
             <h1>Book Your Table</h1>
             <form>
                 <label for="name">Full Name:</label>
@@ -136,74 +137,201 @@
                 <label for="requests">Special Requests:</label>
                 <textarea id="requests" name="requests" rows="4" placeholder="Enter any special requests"></textarea>
 
-                <label for="guests">Total Amount:</label>
-                <input type="text" name="totalAmount" id="totalAmount" disabled>
-
-                <!-- Items Preview -->
-                <table id="Order_Preview" border="1">
-                    <thead class="Table_Bold">
-                        <td>Item</td>
-                        <td>Quantity</td>
-                        <td>Rate</td>
-                        <td>Price</td>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-
-                <div class="payment method">
-                    <label for="payment">Select Payment Method:</label>
-                    <br><br>
-                    <div class="payment_options last"style="color: #ffffff;">
-                        <input type="radio" required name="paymentradio" class="paymentradio" id="delivery" onchange="radio_checked(this)"> 
-                        <label for="delivery" class="payment_option_field" style="color:black;">Cash</label>
-                        <div id="delivery_details" style="display: none;"></div>
-                    </div>
-                    <div id="payment">
-                        <div class="payment_options" style="color: #000000;">
-                            <input type="radio" required name="paymentradio" class="paymentradio" id="upi" value="upi" onchange="radio_checked(this)"> 
-                            <label for="upi" class="payment_option_field">Online Scanner</label><br>
-                            <div id="payment_upi_details" style="display: none;"></div>
-                        </div>
-
-                        <br>
-                        <img src="image/image.png" style="height: 165px;" alt="">
-                        <br>
-
-                    
-                    </div>
-                </div>
-                    
-                <div class="text delivery">
-                    <h4>Delivery time</h4>
-                    <h5>Deliver Now</h5>
-                    <p style="color: greenyellow;">Your order will be delivered in 15 minutes</p>
-                    <!-- <a href="" id="schedule_order">Schedule for later</a> -->
-                </div>
-
-                <span class="text helpline">
-                    <h3>Need help?</h3>
-                    <h4>Contact-12345 12345</h4>
-                </span>
-                <center>
-                    <!-- <a href="2.html"><button onclick="storeAmount()" class="btn back_to_submit">Confirm Order</button></a> -->
-                    <a href="index.html"><button type="button" class="btn back_to_menu">Back to Menu</button></a>
-                    <!-- <a href="index.html"><button type="submit">Order Now</button></a> -->
-                    <!-- <a href="confirmOrder.html" style="color: white;" >  <button style=" width: 23%; height: 43px;" type="submit">Order</button>  </a> -->
-                    <!-- <a href="confirmOrder.html" style="text-decoration: none;"> -->
-                       <a href="confirmOrder.html"> <button  onclick="storeAmount()" style="width: 23%; height: 43px;" type="button">Order</button></a>
-                    <!-- </a> -->
-                </center>
-                    <script>
-                    //                 function storeAmount() {
-                    //     // Perform any required logic here
-                    //     // Navigate to pizza.html explicitly, if needed
-                    //     window.location.href = "pizza.html";
-                    // }
-                </script>
-            </form>
+               
         </div>
+        <div class="container" style="margin-left: 900px; margin-top: -937px; height:850px;">
+            <label for="guests">Total Amount:</label>
+            <input type="text" name="totalAmount" id="totalAmount" disabled style="width: 97%;">
+
+            <!-- Items Preview -->
+            <table id="Order_Preview" border="1">
+                <thead class="Table_Bold">
+                    <td>Item</td>
+                    <td>Quantity</td>
+                    <td>Rate</td>
+                    <td>Price</td>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+           
+            <div class="payment-details">
+                <h2>Payment Information</h2>
+                <form id="checkout-form">
+                    <label for="payment-method">Select Payment Method:</label><br>
+                    <select id="payment-method" name="payment-method" required style="width: 100%;">
+                        <option value="online-payment">Online Payment Scanner</option>
+                        <option value="cod">Cash on Delivery (COD)</option>
+                    </select>
+            
+                    <!-- Card Payment Section -->
+                    <div class="card-details" id="card-details" style="display: none;">
+                        <label for="card-name">Scan here:</label>
+                        <button type="button" id="open-scanner">Open Scanner</button>
+                    </div>
+            
+                    <!-- COD Confirmation -->
+                    <div class="cod-details" id="cod-details" style="display: none;">
+                        <p>You have selected Cash on Delivery. Please ensure correct shipping details.</p>
+                    </div>
+            
+                    <!-- Modal Popup for Scanner -->
+                    <div id="scanner-modal" class="modal" style="display: none;">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <img src="image/scan.png" alt="Scan" width="50%" height="50%">
+                        </div>
+                    </div>
+            
+                    <!-- Alert Message -->
+                    <div id="alert-message" style="display: none; padding: 10px; margin-top: 10px;"></div>
+            
+                    <!-- <button type="submit" id="submit-button">Submit</button> -->
+              
+            </div>
+        </form>
+            
+            <script>
+                const paymentMethod = document.getElementById('payment-method');
+                const cardDetails = document.getElementById('card-details');
+                const codDetails = document.getElementById('cod-details');
+                const alertMessage = document.getElementById('alert-message');
+                const submitButton = document.getElementById('submit-button');
+                const checkoutForm = document.getElementById('checkout-form');
+                const scannerModal = document.getElementById('scanner-modal');
+                const openScanner = document.getElementById('open-scanner');
+                const closeScanner = document.querySelector('.close');
+            
+                paymentMethod.addEventListener('change', function () {
+    const method = paymentMethod.value;
+
+    // Show/hide card or COD details based on selected payment method
+    cardDetails.style.display = method === 'online-payment' ? 'block' : 'none';
+    codDetails.style.display = method === 'cod' ? 'block' : 'none';
+});
+
+openScanner.addEventListener('click', function () {
+    scannerModal.style.display = 'block';
+});
+
+closeScanner.addEventListener('click', function () {
+    scannerModal.style.display = 'none';
+});
+
+window.addEventListener('click', function (event) {
+    if (event.target === scannerModal) {
+        scannerModal.style.display = 'none';
+    }
+});
+
+                submitButton.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent form submission to validate first
+            
+                    if (checkoutForm.checkValidity()) {
+                        alertMessage.style.display = 'block';
+                        alertMessage.textContent = 'Order placed successfully!';
+                        alertMessage.style.backgroundColor = '#4CAF50'; // Green for success
+                        alertMessage.style.color = 'white';
+                        checkoutForm.reset(); // Optional: Reset form after success
+                    } else {
+                        alertMessage.style.display = 'block';
+                        alertMessage.textContent = 'Please fill in all required fields.';
+                        alertMessage.style.backgroundColor = '#f44336'; // Red for error
+                        alertMessage.style.color = 'white';
+                    }
+                });
+            </script>
+            
+            <style>
+                .modal {
+                    display: none; 
+                    position: fixed; 
+                    z-index: 1; 
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    overflow: auto;
+                    background-color: rgba(0, 0, 0, 0.4);
+                }
+            
+                .modal-content {
+                    background-color: #fefefe;
+                    margin: 15% auto;
+                    padding: 20px;
+                    border: 1px solid #888;
+                    width: 50%;
+                    text-align: center;
+                }
+            
+                .close {
+                    color: #aaa;
+                    float: right;
+                    font-size: 28px;
+                    font-weight: bold;
+                }
+            
+                .close:hover,
+                .close:focus {
+                    color: black;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+            </style>
+            
+
+                
+                
+            <!-- </div> -->
+                
+            <div class="text delivery">
+                <h4>Delivery time</h4>
+                <!-- <h5>Deliver Now</h5> -->
+                <p style="color: rgb(34, 203, 40);">Your order will be Ready in 15 minutes</p>
+                <!-- <a href="" id="schedule_order">Schedule for later</a> -->
+            </div>
+
+            <span class="text helpline">
+                <h3>Need help?</h3>
+                <h4>Contact-12345 12345</h4>
+            </span>
+            <center>
+                <!-- <a href="2.html"><button onclick="storeAmount()" class="btn back_to_submit">Confirm Order</button></a> -->
+                <a href="index.html"><button type="button" class="btn back_to_menu">Back to Menu</button></a>
+                <!-- <a href="index.html"><button type="submit">Order Now</button></a> -->
+                <!-- <a href="confirmOrder.html" style="color: white;" >  <button style=" width: 23%; height: 43px;" type="submit">Order</button>  </a> -->
+                <!-- <a href="confirmOrder.html" style="text-decoration: none;"> -->
+                   <!-- <a href="confirmOrder.html">  -->
+                    <button  onclick="storeAmount()" style="width: 23%; height: 43px;" type="button">Order</button>
+                <!-- </a> -->
+                <!-- </a> -->
+            </center>
+        </div>
+        </form>
+            </div>
 
         <script async defer src="order.js"></script>
     </body>
+<script>
+    const bookingData = JSON.parse(localStorage.getItem('bookingData'));
+console.log("Retrieved data: ", bookingData); // Debugging
 
+if (bookingData) {
+    const container = document.getElementById('bookingDataContainer');
+    container.innerHTML = `
+        <div class="data-item"><strong>Full Name:</strong> ${bookingData.name}</div>
+        <div class="data-item"><strong>Email:</strong> ${bookingData.email}</div>
+        <div class="data-item"><strong>Phone Number:</strong> ${bookingData.phone}</div>
+        <div class="data-item"><strong>Date:</strong> ${bookingData.date}</div>
+        <div class="data-item"><strong>Time:</strong> ${bookingData.time}</div>
+        <div class="data-item"><strong>Number of Guests:</strong> ${bookingData.totalCustomer}</div>
+        <div class="data-item"><strong>Room Type:</strong> ${bookingData.roomType}</div>
+        <div class="data-item"><strong>Table Number:</strong> ${bookingData.tableNumber}</div>
+        <div class="data-item"><strong>Total Amount:</strong> ${bookingData.totalAmount}</div>
+        <div class="data-item"><strong>Special Requests:</strong> ${bookingData.specialRequests}</div>
+    `;
+} else {
+    // alert("No booking data found!");
+}
+</script>
     </html>
